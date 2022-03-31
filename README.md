@@ -1,5 +1,5 @@
 ### About test automation task:
-####UI tests<br />
+   ####UI tests <br />
 Requirements for 1 and 2 tests: Should be realized in one test-class
 Test 1: (Create this test without cycles in 6 steps (like for, foreach and etc))
 1. Navigate to https://my.whisk-dev.com/
@@ -12,7 +12,7 @@ Test 1: (Create this test without cycles in 6 steps (like for, foreach and etc))
 1. 1-4 steps from 1 test
 2. Delete Shopping list
 3. Check that user doesn't have Shopping lists<br />
-####Back-end tests:<br />
+   ####Back-end tests: <br />
    Requirements: Create tests in one test-class and relized precondition from 1 step for all back tests
    host: https://api.whisk-dev.com/
    Content-type: application/json
