@@ -3,6 +3,7 @@ package page_objects;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import enums.ITEM;
 import io.qameta.allure.Step;
 import lombok.Getter;
 
@@ -13,7 +14,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
-import static java.time.Duration.ofMillis;
 import static java.time.Duration.ofSeconds;
 import static org.openqa.selenium.Keys.BACK_SPACE;
 import static org.openqa.selenium.Keys.ESCAPE;
@@ -87,11 +87,11 @@ public class ShoppingTab extends NavBar {
         return this;
     }
 
-    @Step("Selecting of item with name = {itemText}")
-    public ShoppingTab selectItem(String itemText) {
-        SelenideElement item = $x(format(itemAutoCompleteXpathTemplate, itemText));
-        item.click();
-        SelenideElement checkingDiv = item.$x("./parent::div/preceding-sibling::div");
+    @Step("Selecting item with name = {item.text}")
+    public ShoppingTab selectItem(ITEM item) {
+        SelenideElement itemElement = $x(format(itemAutoCompleteXpathTemplate, item.getText()));
+        itemElement.click();
+        SelenideElement checkingDiv = itemElement.$x("./parent::div/preceding-sibling::div");
         checkingDiv.shouldHave(cssValue("background-color", greenColor));
         return this;
     }
@@ -102,33 +102,20 @@ public class ShoppingTab extends NavBar {
         return this;
     }
 
-    public SelenideElement itemInShoppingList(String itemText) {
-        return $x(format(shoppingListItemXpathTemplate, itemText));
+    public SelenideElement itemInShoppingList(ITEM item) {
+        return $x(format(shoppingListItemXpathTemplate, item.getText()));
     }
 
-    @Step("Removing item with name = {itemText} from list")
-    public ShoppingTab removeItemFromShoppingList(String itemText) {
-        SelenideElement item = $x(format(shoppingListItemXpathTemplate, itemText));
+    @Step("Removing item with name = {item.text} from list")
+    public ShoppingTab removeItemFromShoppingList(ITEM item) {
+        SelenideElement selenideItem = $x(format(shoppingListItemXpathTemplate, item.getText()));
         Selenide.actions()
-                .moveToElement(item)
-                .pause(ofMillis(500))
-                .clickAndHold(item)
-                .pause(ofMillis(500))
+                .moveToElement(selenideItem)
+                .clickAndHold(selenideItem)
                 .moveByOffset(200, 0)
-                .pause(ofMillis(500))
                 .release().perform();
         //need to wait according to logic of the application
-        deletingMessages.find(text(itemText)).shouldBe(hidden, ofSeconds(7));
-        return this;
-    }
-
-    public ShoppingTab clickShoppingListOptions() {
-        shoppingListOptionsButton.click();
-        return this;
-    }
-
-    public ShoppingTab clickClearShoppingList() {
-        clearShoppingListButton.click();
+        deletingMessages.find(text(item.getText())).shouldBe(hidden, ofSeconds(7));
         return this;
     }
 }

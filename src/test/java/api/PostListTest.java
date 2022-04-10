@@ -2,9 +2,11 @@ package api;
 
 import endpoint.ListEndpoint;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import model.PostListRequest;
 import model.postResponse.PostListResponse;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +21,7 @@ public class PostListTest extends BaseApiTest {
     private final String name = "Soma_api_name";
     private final boolean primary = false;
 
-    @DisplayName("Check of 'post' and 'get' methods in '/list/v2' endpoint")
+    @DisplayName("Check of 'post' and 'get' methods for 'list' endpoint")
     @Test
     public void testPost() {
         postListResponse = listEndpoint.post(PostListRequest.builder()
@@ -37,5 +39,11 @@ public class PostListTest extends BaseApiTest {
                 .as("Check that content from 'get' response is empty")
                 .isEqualTo(true);
         softAssertions.assertAll();
+    }
+
+    @AfterAll
+    @Step("Delete created list")
+    public void deleteList(){
+        listEndpoint.delete(shoppingListId);
     }
 }

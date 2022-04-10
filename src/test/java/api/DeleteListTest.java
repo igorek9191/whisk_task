@@ -30,7 +30,7 @@ public class DeleteListTest extends BaseApiTest {
         shoppingListId = postListResponse.getList().getId();
     }
 
-    @DisplayName("Check of 'delete' and 'get' methods in '/list/v2' endpoint")
+    @DisplayName("Check of 'delete' and 'get' methods for 'list' endpoint")
     @Test
     public void deleteListTest() {
         listEndpoint.delete(shoppingListId);

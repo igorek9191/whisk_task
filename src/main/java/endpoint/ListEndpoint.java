@@ -16,7 +16,7 @@ public class ListEndpoint extends RequestSpecHandler {
                 .spec(spec)
                 .when()
                 .body(productRequest)
-                .post("/list/v2")
+                .post(generalProperties.listPost())
                 .thenReturn();
         assertEquals(200, response.getStatusCode(), "Check of status code in response of 'post' method");
         return response.as(PostListResponse.class);
@@ -27,7 +27,7 @@ public class ListEndpoint extends RequestSpecHandler {
         Response response = given()
                 .spec(spec)
                 .when()
-                .get("/list/v2/{id}", listId)
+                .get(generalProperties.listGet(), listId)
                 .thenReturn();
         assertEquals(200, response.getStatusCode(), "Check of status code in response of 'get' method");
         return response.as(PostListResponse.class);
@@ -38,7 +38,7 @@ public class ListEndpoint extends RequestSpecHandler {
         Response response = given()
                 .spec(spec)
                 .when()
-                .get("/list/v2/{id}", listId)
+                .get(generalProperties.listGet(), listId)
                 .thenReturn();
         assertEquals(statusCode, response.getStatusCode(), "Check of status code in response of 'get' method");
         return response.as(tClass);
@@ -49,7 +49,7 @@ public class ListEndpoint extends RequestSpecHandler {
         Response response = given()
                 .spec(spec)
                 .when()
-                .delete("/list/v2/{id}", listId)
+                .delete(generalProperties.listDelete(), listId)
                 .thenReturn();
         assertEquals(200, response.getStatusCode(), "Check of status code in response of 'delete' method");
     }
