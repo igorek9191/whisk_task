@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import page_objects.AmazonStartPage;
 import page_objects.LoginPage;
 import page_objects.NavBar;
 import property_handling.GeneralProperties;
@@ -16,7 +17,8 @@ import static com.codeborne.selenide.Selenide.open;
 @Slf4j
 public class BaseTest {
 
-    protected LoginPage loginPage;
+//    protected LoginPage loginPage;
+    protected AmazonStartPage amazonStartPage;
     protected NavBar navBar;
 
     private GeneralProperties generalProperties = ConfigFactory.create(GeneralProperties.class);
@@ -30,11 +32,13 @@ public class BaseTest {
                 .savePageSource(false));
         open();
         Selenide.webdriver().driver().getWebDriver().manage().window().maximize();
-        loginPage = open(generalProperties.url(), LoginPage.class);
-        navBar = loginPage.signIn(generalProperties.loginName(), generalProperties.password());
+
+        amazonStartPage = open("https://www.amazon.com/", AmazonStartPage.class);
+//        loginPage = open(generalProperties.url(), LoginPage.class);
+//        navBar = loginPage.signIn(generalProperties.loginName(), generalProperties.password());
     }
 
-    @AfterAll
+//    @AfterAll
     public void logOut() {
         navBar.logOut();
     }
