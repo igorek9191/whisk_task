@@ -2,21 +2,12 @@ package smoke;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import page_objects.ShoppingTab;
 
 import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Condition.visible;
-import static enums.ITEM.BREAD;
-import static enums.ITEM.BUTTER;
-import static enums.ITEM.CHEESE;
-import static enums.ITEM.MILK;
-import static enums.ITEM.ONION;
+import static enums.ITEM.*;
 
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 @Feature("Add popular items to list")
