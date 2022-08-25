@@ -196,4 +196,18 @@ public class DifferentTasks {
         System.out.println("The final summ is: " + finalSumma);
     }
 
+    //factorial
+    @Test
+    public void factorial() {
+        int num = 6;
+        long factorial = multiplyNumbers(num);
+        System.out.println("Factorial of " + num + " = " + factorial);
+    }
+
+    public long multiplyNumbers(int num) {
+        long result;
+        if (num >= 1) return num * multiplyNumbers(num - 1);
+        else return 1;
+    }
+
 }
