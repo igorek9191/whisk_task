@@ -210,4 +210,72 @@ public class DifferentTasks {
         else return 1;
     }
 
+    @Test
+    public void summFromNumber() {
+        int num = 29;
+        int sum = 0;
+        while (num > 0) {
+            sum = sum + num % 10;
+            num = num / 10;
+        }
+        System.out.println(sum);
+    }
+
+    @Test
+    public void userNa() {
+        String[][] names = {{"Natalie", "Lee"}, {"Shayne ", "Jensen"}, {"Natalie", "Lee"}, {"Natalie", "Lee"}};
+
+        List<String> userNames = new ArrayList<>();
+        for (int i = 0; i < names.length; i++) {
+            String firstName = names[i][0];
+            firstName = firstName.toLowerCase();
+            String lastName = names[i][1];
+            lastName = Character.toUpperCase(lastName.charAt(0)) + lastName.substring(1);
+            if (userNames.contains(firstName + lastName)) userNames.add(firstName + lastName + "1");
+            else userNames.add(firstName + lastName);
+        }
+        System.out.println(userNames);
+    }
+
+    @Test
+    public void threeAndFive() {
+        int num = 333;
+        if (num % 3 == 0) System.out.println("FIZZ");
+        if (num % 5 == 0) System.out.println("BUZZ");
+    }
+
+    @Test
+    public void max() {
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        if (array.length == 0) throw new IllegalArgumentException();
+
+        int max = array[0];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > max) max = array[i];
+        }
+        System.out.println(max);
+    }
+
+    @Test
+    public void mergeSortedLists() {
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 1, 2, 3, 4, 5, 6, 8, 9));
+        List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        List<Integer> mergedSortedList = new ArrayList<>();
+
+        while (list1.size()>0 || list2.size()>0) {
+            if(list1.size()==0 || list2.size()==0) break;
+            if (list1.get(0) <= list2.get(0)) {
+                mergedSortedList.add(list1.get(0));
+                list1.remove(0);
+            } else {
+                mergedSortedList.add(list2.get(0));
+                list2.remove(0);
+            }
+        }
+        if(list1.size()!=0) mergedSortedList.addAll(list1);
+        if(list2.size()!=0) mergedSortedList.addAll(list2);
+
+        System.out.println(mergedSortedList);
+    }
 }

@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class LoginPage {
 
+    SelenideElement loginButton = $x("//div[text()='Log in']");
     SelenideElement emailInput = $(By.id("_input-1"));
     SelenideElement continueButton = $x("//div[contains(text(),'Continue')]");
 
@@ -18,6 +19,7 @@ public class LoginPage {
 
     @Step("Sign in with login = {login} and password = {password}")
     public NavBar signIn(String login, String password) {
+        loginButton.click();
         emailInput.sendKeys(login);
         continueButton.click();
         passwordInput.sendKeys(password);
