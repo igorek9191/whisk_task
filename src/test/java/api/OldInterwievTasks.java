@@ -6,7 +6,7 @@ import java.util.*;
 
 import static java.util.Arrays.asList;
 
-public class DifferentTasks {
+public class OldInterwievTasks {
 
     //correct string []{}()
     @Test
@@ -71,9 +71,11 @@ public class DifferentTasks {
     @Test
     public void repeatable() {
         String text = "qwertyqwasdy";
+        //создаем map в котором key - это символ из строки, value - количетсво повторений
         Map<Character, Integer> map = new HashMap<>();
         for (int j = 0; j < text.length(); j++) {
             char ch = text.charAt(j);
+            // если map содержит такой ключ (символ из строки), то берем счетчик, увеличиваем его, и сохраняем заново в map
             if (map.containsKey(ch)) {
                 int counter = map.get(ch);
                 map.put(ch, ++counter);
@@ -186,7 +188,7 @@ public class DifferentTasks {
         int num1 = 0, num2 = 1, summ;
         int finalSumma = 0;
         for (int i = 0; i < 10; i++) {
-            System.out.println("num1: " + num1);
+            System.out.println("num: " + num1);
             summ = num1 + num2;
             num1 = num2;
             num2 = summ;
