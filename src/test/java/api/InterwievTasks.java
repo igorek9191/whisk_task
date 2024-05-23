@@ -59,19 +59,34 @@ public class InterwievTasks {
     }
 
     @Test
-    public void tratata() {
-        int[] array = {1, 3, 4, 2, 1, 5, 0};
+    public void findAndReplaceInsideText() {
 
-            List<int[]> pairs = new ArrayList<>();
+        String text = "hello world. It's me";
+        String source = "world";
+        String target = "JavaScript";
 
-            for (int i = 0; i < array.length; i++) {
-                for (int j = i + 1; j < array.length; j++) {
-                    if (array[i] + array[j] == 5) {
-                        pairs.add(new int[]{array[i], array[j]});
-                    }
-                }
+        // If the source string is empty, return the original text
+        if (source.isEmpty()) {
+            System.out.println(text);
+        }
+
+        StringBuilder result = new StringBuilder();
+        int i = 0;
+
+        while (i < text.length()) {
+            // Check if the substring from the current position (i) matches the source
+            if (text.startsWith(source, i)) {
+                // Append the target to the result and skip the length of the source
+                result.append(target);
+                i += source.length();
+            } else {
+                // Otherwise, just append the current character to the result
+                result.append(text.charAt(i));
+                i++;
             }
-        pairs.forEach(x -> System.out.println(x[0] + " " + x[1]));
+        }
+
+        System.out.println(result.toString());
     }
 
     @Test
